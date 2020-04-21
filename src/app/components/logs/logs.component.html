@@ -1,0 +1,39 @@
+<!-- <ul class="list-group" *ngIf="loaded && logs.length > 0">
+  <li *ngFor="let log of logs" [class.list-group-item-secondary]="selectedLog === log" class="list-group-item d-flex justify-content-between align-items-center">
+    <a (click)="onSelect(log)" href="#">{{ log.text }}</a> 
+    <span class="log-date">{{ log.date | date: 'short'}}</span>
+    <button class="btn btn-danger" (click)="onDelete(log)"><i class="fa fa-remove"></i></button>
+  </li>
+</ul> -->
+
+<table class="table table-bordered" *ngIf="loaded && logs.length > 0">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th class="text-center">Time</th>
+      <th class="text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let log of logs">
+      <td style="max-width: 200px;">
+        <b><a (click)="onSelect(log)" href="#">{{ log.text }}</a></b>
+      </td>
+      <td class="text-center">
+        <span class="log-date">{{ log.date | date: 'short'}}</span>
+      </td>
+      <td class="text-center">
+        <button class="btn btn-primary mr-1" (click)="onSelect(log)"><i class="fa fa-pencil"></i></button>
+        <button class="btn btn-danger" (click)="onDelete(log)"><i class="fa fa-remove"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="loaded && logs.length == 0">
+  <h5>There are no logs in the system</h5>
+</div>
+
+<div *ngIf="!loaded">
+  <h5>Loading...</h5>
+</div>
